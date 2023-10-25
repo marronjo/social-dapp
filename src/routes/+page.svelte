@@ -2,7 +2,7 @@
 <p>Visit <a href="https://github.com/marronjo/social-dapp">github</a> to check out the repo</p>
 
 <script lang="ts">
-      import type { ethers, Provider } from 'ethers';
+  import type { Provider } from 'ethers';
   let account: Provider;
   let walletError: string;
   let walletConnected = false;
