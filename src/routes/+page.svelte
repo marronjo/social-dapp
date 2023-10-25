@@ -1,27 +1,26 @@
 <h1>Welcome to Social Dapp</h1>
 <p>Visit <a href="https://github.com/marronjo/social-dapp">github</a> to check out the repo</p>
 
-<script>
-  import { ethers } from 'ethers';
-  let account;
-  let walletError;
+<script lang="ts">
+      import type { ethers, Provider } from 'ethers';
+  let account: Provider;
+  let walletError: string;
   let walletConnected = false;
   async function connectWallet() {
     walletConnected = false;
-    const { ethereum } = window;
+    const { ethereum }: any = window;
     await ethereum
       .request({ method: 'eth_requestAccounts' })
-      .then((accountList) => {
+      .then((accountList : Provider[]) => {
         const [firstAccount] = accountList;
         account = firstAccount;
         walletConnected = true;
-        console.log('wallet connected');
-        console.log(account);
+        console.log(`account connected : ${account}`);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         walletConnected = false;
         walletError = error;
-        console.log('error connecting wallet');
+        console.log(`error connecting wallet : ${error}`);
       });
   }
 </script>
