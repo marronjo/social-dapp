@@ -1,4 +1,6 @@
 .DS_Store
+
+# frontend
 node_modules
 /build
 /.svelte-kit
@@ -9,9 +11,16 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-# frontend
-frontend/.svelte-kit/
-frontend/.npmrc
+.svelte-kit/
+.npmrc
 
 # backend
-backend/.gitmodules
+cache/
+
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+docs/
+
+broadcast
