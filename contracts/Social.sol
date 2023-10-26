@@ -5,24 +5,24 @@ contract Social {
 
     struct Post {
         uint256 id;
+        address author;
         uint256 timestamp;
         string content;
     }
-    
-    uint256 public postCount;
 
-    mapping(address => Post[]) public posts;
+    Post[] public posts;
 
     event newPost(Post);
 
-    function createPost(string calldata content) external {
-        Post memory post = Post(postCount, block.timestamp, content);
-        posts[msg.sender].push(post);
-        postCount++;
+    function createPost(string calldata content) external returns(uint256) {
+        uint256 id = posts.length + 1;
+        Post memory post = Post(id, msg.sender, block.timestamp, content);
+        posts.push(post);
         emit newPost(post);
+        return id;
     }
 
-    function getUserPosts(address user) external view returns(Post[] memory) {
-        return posts[user];
+    function getAllPosts() external view returns(Post[] memory) {
+        return posts;
     }
 }
