@@ -17,7 +17,7 @@
         .catch((error: any) => {
           walletConnected = false;
           walletError = error;
-          console.log(`error connecting wallet : ${error}`);
+          console.log(`error connecting wallet : ${JSON.stringify(error)}`);
         });
     }
 </script>
