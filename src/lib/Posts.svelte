@@ -27,9 +27,11 @@
     <button on:click={getAllPosts}>refresh</button>
     <ul>
         {#each posts as post}
-        <p>{post.id}</p>
-        <p>{post.author}</p>
-        <p>{post.content}</p>
+        <li>
+            <h3>Post #{post.id}</h3>
+            <p>Author : {post.author}</p>
+            <p>{post.content}</p>
+        </li>
         {/each}
     </ul>
 </div>
