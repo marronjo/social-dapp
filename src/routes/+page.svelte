@@ -1,6 +1,7 @@
 <script>
   import Wallet from '$lib/Wallet.svelte';
   import CreatePost from '$lib/CreatePost.svelte';
+    import Posts from '$lib/Posts.svelte';
 </script>
 
 <main>
@@ -9,5 +10,6 @@
   <div>
     <Wallet />
     <CreatePost />
+    <Posts />
   </div>
 </main>
