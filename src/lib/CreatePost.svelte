@@ -24,7 +24,7 @@
             signer
         );
 
-        latestPostId = await socialContract.CreatePost(postContent);
+        latestPostId = await socialContract.createPost(postContent);
         postContent = '';
         loading = false;
     }
