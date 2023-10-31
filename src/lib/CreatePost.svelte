@@ -1,6 +1,6 @@
 <script>
     import { ethers } from 'ethers';
-    import Social from '../abi/Social.json';
+    import Social from '../out/Social.sol/Social.json';
 
     export let contractAddress;
 
