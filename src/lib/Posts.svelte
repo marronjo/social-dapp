@@ -1,9 +1,8 @@
 <script>
     import { ethers } from 'ethers';
-    //import { Social } from '../../out/Social.sol/Social.json'
     import Social from '../abi/Social.json';
 
-    const contractAddress = "0x3585004F86af7b95B8aD63a898C90279B101b678";
+    export let contractAddress;
 
     let posts = [];
 
