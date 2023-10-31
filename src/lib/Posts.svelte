@@ -1,10 +1,19 @@
 <script>
     import { ethers } from 'ethers';
     import Social from '../abi/Social.json';
+    import { websocketUrl } from '../secrets.json';
 
     export let contractAddress;
 
     let posts = [];
+
+    const webSocketProvider = new ethers.providers.WebSocketProvider(websocketUrl, "goerli");
+    const contract = new ethers.Contract(contractAddress, Social.abi, webSocketProvider);
+
+    contract.on("newPost", (post) => {
+        console.log(post)
+        posts = [...posts, post]
+    });
 
     async function getAllPosts(){
         if (!window.ethereum) {
@@ -20,6 +29,7 @@
         );
 
         posts = await socialContract.getAllPosts();
+        console.log(posts);
     }
 </script>
 <div>

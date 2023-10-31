@@ -24,3 +24,5 @@ cache/
 docs/
 
 broadcast
+
+src/secrets.json
