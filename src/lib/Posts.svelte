@@ -2,6 +2,7 @@
     import { ethers } from 'ethers';
     import Social from '../abi/Social.json';
     import { websocketUrl } from '../secrets.json';
+    import { onMount } from 'svelte';
 
     export let contractAddress;
 
@@ -11,7 +12,6 @@
     const contract = new ethers.Contract(contractAddress, Social.abi, webSocketProvider);
 
     contract.on("newPost", (post) => {
-        console.log(post)
         posts = [...posts, post]
     });
 
@@ -29,11 +29,11 @@
         );
 
         posts = await socialContract.getAllPosts();
-        console.log(posts);
     }
+
+    onMount(() => getAllPosts())
 </script>
 <div>
-    <button on:click={getAllPosts}>refresh</button>
     <ul>
         {#each posts as post}
         <li>
