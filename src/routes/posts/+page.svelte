@@ -1,19 +1,12 @@
 <script>
     import { ethers } from 'ethers';
-    import Social from '../out/Social.sol/Social.json';
-    import { websocketUrl } from '../secrets.json';
+    import Social from '../../out/Social.sol/Social.json';
     import { onMount } from 'svelte';
+    import { websocketUrl } from '../../secrets.json';
 
-    export let contractAddress;
+    const contractAddress = "0x3585004F86af7b95B8aD63a898C90279B101b678";
 
     let posts = [];
-
-    const webSocketProvider = new ethers.providers.WebSocketProvider(websocketUrl, "goerli");
-    const contract = new ethers.Contract(contractAddress, Social.abi, webSocketProvider);
-
-    contract.on("newPost", (post) => {
-        posts = [...posts, post]
-    });
 
     async function getAllPosts(){
         if (!window.ethereum) {
@@ -31,7 +24,19 @@
         posts = await socialContract.getAllPosts();
     }
 
-    onMount(() => getAllPosts())
+    async function initNewPostListener(){
+        const webSocketProvider = new ethers.providers.WebSocketProvider(websocketUrl, "goerli");
+        const contract = new ethers.Contract(contractAddress, Social.abi, webSocketProvider);
+
+        contract.on("newPost", (post) => {
+            postCollection = [...posts, post]
+        });
+    }
+
+    onMount(() => {
+        getAllPosts();
+        initNewPostListener();
+    });
 </script>
 <div>
     <ul>
